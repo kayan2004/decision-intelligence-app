@@ -4,8 +4,21 @@ services:
       context: ./week3_project
     env_file:
       - ./week3_project/.env
+    restart: unless-stopped
     ports:
       - "8007:8000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
   frontend:
     build:
@@ -13,6 +26,14 @@ services:
     environment:
       VITE_API_BASE_URL: http://localhost:8007
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
     ports:
       - "8080:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://127.0.0.1/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
