@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ./week3_project
+    env_file:
+      - ./week3_project/.env
+    ports:
+      - "8007:8000"
+
+  frontend:
+    build:
+      context: ./decision-intelligence-frontend
+      args:
+        VITE_API_BASE_URL: /api
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"

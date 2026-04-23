@@ -1,0 +1,43 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.ipynb_checkpoints/
+
+# Node / frontend build
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/*.tsbuildinfo
+
+# Env files
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs / caches
+**/logs/*
+!**/logs/.gitkeep
+**/*.log
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+
+# Backend raw data and unused large artifacts
+week3_project/dataset/*
+!week3_project/dataset/retrieval/
+week3_project/dataset/retrieval/*
+!week3_project/dataset/retrieval/support_tickets_for_rag.csv
+
+week3_project/model/*
+!week3_project/model/.gitkeep
+!week3_project/model/best_logistic_regression.joblib
+!week3_project/model/rag_voyage_embeddings.npy
